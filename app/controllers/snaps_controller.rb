@@ -17,6 +17,13 @@ class SnapsController < ApplicationController
 
   end
 
+  def destroy
+    @snap = Snap.find(params[:id])
+    @snap.destroy
+    flash[:notice] = 'Snap deleted successfully'
+    redirect_to '/snaps'
+  end
+
  private
 
  def snap_params

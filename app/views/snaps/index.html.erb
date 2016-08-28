@@ -8,9 +8,11 @@
     <h1>Snapogram</h1>
 
   <% if Snap.all.any? %>
-    <% Snap.all.each do |snap| %>
-      <%= image_tag snap.image.url(:medium) %>
+    <% Snap.all.reverse.each do |snap| %>
+      <a href='<%= snap.image.url %>'><%= image_tag snap.image.url(:medium) %></a>
+      <!-- <%= link_to "Delete snap", snap_path(snap), method: :delete %> -->
       <h2><%= snap.caption %></h2>
+      <p><%= link_to "Delete snap", snap_path(snap), method: :delete %></p>
     <% end %>
   <% else %>
     <h1>No snaps yet</h1>
