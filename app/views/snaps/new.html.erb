@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add a snap</title>
+  </head>
+  <body>
+    <%= simple_form_for @snap do |f| %>
+      <%= f.input :image %>
+      <%= f.input :caption %>
+      <%= f.button :submit %>
+    <% end %>
+  </body>
+</html>
