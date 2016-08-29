@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'web_helper'
 
 feature "User can sign in and out" do
   context "user not signed in and on the homepage" do
@@ -12,16 +13,19 @@ feature "User can sign in and out" do
       visit('/')
       expect(page).not_to have_link('Sign out')
     end
+
+    it "should not be able to add snaps" do
+      visit '/snaps'
+      click_link 'Add a snap'
+      expect(page).to have_content('You need to sign in or sign up before continuing')
+      expect(page).not_to have_content('Image')
+    end
+
   end
 
   context "user signed in on the homepage" do
     before do
-      visit('/')
-      click_link('Sign up')
-      fill_in('Email', with: 'test@example.com')
-      fill_in('Password', with: 'testtest')
-      fill_in('Password confirmation', with: 'testtest')
-      click_button('Sign up')
+      sign_up
     end
 
     it "should see 'sign out' link" do
@@ -33,6 +37,12 @@ feature "User can sign in and out" do
       visit('/')
       expect(page).not_to have_link('Sign in')
       expect(page).not_to have_link('Sign up')
+    end
+
+    it "should be able to add snaps" do
+      add_another_snap
+      expect(page).to have_content('#stopsign')
+      expect(page).to have_css("img[src*='08.jpg']")
     end
   end
 end
