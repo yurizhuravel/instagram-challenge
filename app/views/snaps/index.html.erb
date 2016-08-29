@@ -14,9 +14,9 @@
   <% if Snap.all.any? %>
     <% Snap.all.reverse.each do |snap| %>
       <a href='<%= snap.image.url %>'><%= image_tag snap.image.url(:medium) %></a>
-      <!-- <%= link_to "Delete snap", snap_path(snap), method: :delete %> -->
       <h4><%= snap.caption %></h4>
       <p><%= link_to "Delete snap", snap_path(snap), method: :delete %></p>
+      <p><%= link_to "Add a comment", new_snap_comment_path(snap) %></p>
     <% end %>
   <% else %>
     <h1>No snaps yet</h1>
