@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Leave a Comment</title>
+  </head>
+  <body>
+    <%= form_for [@snap, @comment] do |f| %>
+      <%= f.label :thoughts %>
+      <%= f.text_area :thoughts %>
+      <%= f.submit 'Post Comment' %>
+    <% end %>
+  </body>
+</html>

@@ -10,8 +10,8 @@ feature 'Leaving comments' do
   scenario 'allows users to leave a comment on a snap' do
      visit '/'
      click_link 'Add a comment'
-     fill_in "Your Comment", with: "wow wow!"
-     click_button 'Post comment'
+     fill_in "Thoughts", with: "wow wow!"
+     click_button 'Post Comment'
 
      expect(current_path).to eq '/snaps'
      expect(page).to have_content('wow wow!')

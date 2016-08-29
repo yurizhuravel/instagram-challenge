@@ -14,7 +14,10 @@
   <% if Snap.all.any? %>
     <% Snap.all.reverse.each do |snap| %>
       <a href='<%= snap.image.url %>'><%= image_tag snap.image.url(:medium) %></a>
-      <h4><%= snap.caption %></h4>
+      <h3><%= snap.caption %></h3>
+        <% snap.comments.each do |comment| %>
+          <p><%= comment.thoughts %></p>
+        <% end %>
       <p><%= link_to "Delete snap", snap_path(snap), method: :delete %></p>
       <p><%= link_to "Add a comment", new_snap_comment_path(snap) %></p>
     <% end %>
